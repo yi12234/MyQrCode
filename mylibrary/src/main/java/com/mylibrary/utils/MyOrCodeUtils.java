@@ -49,7 +49,7 @@ public class MyOrCodeUtils extends Activity  {
             }
         });
     }
-    //生成二维码
+    //输入框 生成二维码
     public  void CreateQrCodeScan (final Activity context, final EditText  enter, Button createQrCode, final ImageView qrCode) {
         this.context =context;
         this.createQrCode=createQrCode;
@@ -65,7 +65,7 @@ public class MyOrCodeUtils extends Activity  {
                         //根据输入的文本生成对应的二维码并且显示出来
                         Bitmap mBitmap = EncodingHandler.createQRCode(enter.getText().toString(), 500);
                         if(mBitmap != null){
-                            Toast.makeText(context,"二维码生成成功！",Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(context,"二维码生成成功！",Toast.LENGTH_SHORT).show();
                             qrCode.setImageBitmap(mBitmap);
                         }
                     }else{
@@ -77,6 +77,35 @@ public class MyOrCodeUtils extends Activity  {
             }
         });
     }
+
+    //文字 生成二维码
+    public  void CreateQrCodeScan (final Activity context, final String str, Button createQrCode, final ImageView qrCode) {
+        this.context =context;
+        this.createQrCode=createQrCode;
+        this.enter=enter;
+        this.qrCode=qrCode;
+        createQrCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    if(str != null && !"".equals(str.trim())){
+                        //根据输入的文本生成对应的二维码并且显示出来
+                        Bitmap mBitmap = EncodingHandler.createQRCode(enter.getText().toString(), 500);
+                        if(mBitmap != null){
+                            // Toast.makeText(context,"二维码生成成功！",Toast.LENGTH_SHORT).show();
+                            qrCode.setImageBitmap(mBitmap);
+                        }
+                    }else{
+                        Toast.makeText(context,"文本信息不能为空！",Toast.LENGTH_SHORT).show();
+                    }
+                } catch (WriterException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
