@@ -50,7 +50,7 @@ public class MyOrCodeUtils extends Activity  {
         });
     }
     //输入框 生成二维码
-    public  void CreateQrCodeScan (final Activity context, final EditText  enter, Button createQrCode, final ImageView qrCode) {
+    public  void CreateQrCodeScan1(final Activity context, final EditText  enter, Button createQrCode, final ImageView qrCode) {
         this.context =context;
         this.createQrCode=createQrCode;
         this.enter=enter;
@@ -78,11 +78,10 @@ public class MyOrCodeUtils extends Activity  {
         });
     }
 
-    //文字 生成二维码
-    public  void CreateQrCodeScan (final Activity context, final String str, Button createQrCode, final ImageView qrCode) {
+  //文字 生成二维码
+    public  void CreateQrCodeScan1 (final Activity context, final String str, Button createQrCode, final ImageView qrCode) {
         this.context =context;
         this.createQrCode=createQrCode;
-        this.enter=enter;
         this.qrCode=qrCode;
         createQrCode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +89,7 @@ public class MyOrCodeUtils extends Activity  {
                 try {
                     if(str != null && !"".equals(str.trim())){
                         //根据输入的文本生成对应的二维码并且显示出来
-                        Bitmap mBitmap = EncodingHandler.createQRCode(enter.getText().toString(), 500);
+                        Bitmap mBitmap = EncodingHandler.createQRCode(str, 500);
                         if(mBitmap != null){
                             // Toast.makeText(context,"二维码生成成功！",Toast.LENGTH_SHORT).show();
                             qrCode.setImageBitmap(mBitmap);
@@ -105,6 +104,99 @@ public class MyOrCodeUtils extends Activity  {
         });
     }
 
+    //无按钮 生成二维码
+    public  void CreateQrCodeScan1(final Activity context, final String str, final ImageView qrCode) {
+        this.context =context;
+        this.qrCode=qrCode;
+        try {
+            if(str != null && !"".equals(str.trim())){
+                //根据输入的文本生成对应的二维码并且显示出来
+                Bitmap mBitmap = EncodingHandler.createQRCode(str, 500);
+                if(mBitmap != null){
+                    // Toast.makeText(context,"二维码生成成功！",Toast.LENGTH_SHORT).show();
+                    qrCode.setImageBitmap(mBitmap);
+                }
+            }else{
+                Toast.makeText(context,"文本信息不能为空！",Toast.LENGTH_SHORT).show();
+            }
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
+    }
+ //输入框 生成二维码 无Toast
+    public  void CreateQrCodeScan2(final Activity context, final EditText  enter, Button createQrCode, final ImageView qrCode) {
+        this.context =context;
+        this.createQrCode=createQrCode;
+        this.enter=enter;
+        this.qrCode=qrCode;
+        createQrCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    //获取输入的文本信息
+                    String str = enter.getText().toString().trim();
+                    if(str != null && !"".equals(str.trim())){
+                        //根据输入的文本生成对应的二维码并且显示出来
+                        Bitmap mBitmap = EncodingHandler.createQRCode(enter.getText().toString(), 500);
+                        if(mBitmap != null){
+                           // Toast.makeText(context,"二维码生成成功！",Toast.LENGTH_SHORT).show();
+                            qrCode.setImageBitmap(mBitmap);
+                        }
+                    }else{
+                        //Toast.makeText(context,"文本信息不能为空！",Toast.LENGTH_SHORT).show();
+                    }
+                } catch (WriterException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+  //文字 生成二维码 无Toast
+    public  void CreateQrCodeScan2 (final Activity context, final String str, Button createQrCode, final ImageView qrCode) {
+        this.context =context;
+        this.createQrCode=createQrCode;
+        this.qrCode=qrCode;
+        createQrCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    if(str != null && !"".equals(str.trim())){
+                        //根据输入的文本生成对应的二维码并且显示出来
+                        Bitmap mBitmap = EncodingHandler.createQRCode(str, 500);
+                        if(mBitmap != null){
+                            // Toast.makeText(context,"二维码生成成功！",Toast.LENGTH_SHORT).show();
+                            qrCode.setImageBitmap(mBitmap);
+                        }
+                    }else{
+                            //Toast.makeText(context,"文本信息不能为空！",Toast.LENGTH_SHORT).show();
+                    }
+                } catch (WriterException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    //无按钮 生成二维码 无Toast
+    public  void CreateQrCodeScan2(final Activity context, final String str, final ImageView qrCode) {
+        this.context =context;
+        this.qrCode=qrCode;
+        try {
+            if(str != null && !"".equals(str.trim())){
+                //根据输入的文本生成对应的二维码并且显示出来
+                Bitmap mBitmap = EncodingHandler.createQRCode(str, 500);
+                if(mBitmap != null){
+                    // Toast.makeText(context,"二维码生成成功！",Toast.LENGTH_SHORT).show();
+                    qrCode.setImageBitmap(mBitmap);
+                }
+            }else{
+                //Toast.makeText(context,"文本信息不能为空！",Toast.LENGTH_SHORT).show();
+            }
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
